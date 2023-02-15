@@ -1,9 +1,7 @@
-import { NewTitle } from "../utils/ChangeTitle"
+import { NewTitle } from '../utils/ChangeTitle'
 
 export const Posts = () => {
   NewTitle('Blog | All Posts')
 
-  return (
-    <div>Posts</div>
-  )
+  return <div>Posts</div>
 }

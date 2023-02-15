@@ -3,7 +3,5 @@ import { NewTitle } from '../utils/ChangeTitle'
 export const Contact = () => {
   NewTitle('Blog | Contact')
 
-  return (
-    <div>Contact</div>
-  )
+  return <div>Contact</div>
 }

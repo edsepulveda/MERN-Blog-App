@@ -4,10 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html,
 body,
-:root{
+:root {
   min-height: 100vh;
   scroll-behavior: smooth;
 }
