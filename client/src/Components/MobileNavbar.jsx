@@ -37,14 +37,14 @@ export const MobileNavbar = () => {
         <div className='flex flex-col px-5 text-md font-bold gap-5 mb-5'>
           {!user && (
             <>
-              <a className='rounded-md inline-flex justify-center text-white bg-emerald-500 py-2.5 px-3'>
+              <NavLink to='/' className='rounded-md inline-flex justify-center text-white bg-emerald-500 py-2.5 px-3'>
                 Login
                 <img className='block ml-3 h-5 w-5' src={Login} />
-              </a>
-              <a className='rounded-md inline-flex justify-center bg-white py-2.5 px-3'>
+              </NavLink>
+              <NavLink to='/' className='rounded-md inline-flex justify-center bg-white py-2.5 px-3'>
                 Register
                 <img className='block ml-3 h-5 w-5' src={Register} />
-              </a>
+              </NavLink>
             </>
           )}
 

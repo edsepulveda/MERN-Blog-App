@@ -14,7 +14,7 @@ export const navLinks = [
   },
   {
     id: 3,
-    link: 'Write',
+    link: 'Create Post',
     path: '/write',
     active: false
   },
