@@ -2,7 +2,7 @@ import { AuthRoutes } from './Components/auth/routes/AuthRoutes'
 
 function App () {
   return (
-    <div className='App font-body bg-gray-50'>
+    <div className='App font-body bg-gradient-to-t from-gray-700 via-gray-800 to bg-gray-900'>
       <AuthRoutes />
     </div>
   )

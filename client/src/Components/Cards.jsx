@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export const Cards = () => {
   return (
     <div className='py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6'>
-      <h1 className='text-center mb-10 text-2xl lg:text-4xl font-extrabold uppercase'>
+      <h1 className='text-center mb-10 text-2xl lg:text-4xl font-extrabold uppercase text-white'>
         Latest Blogs
       </h1>
       <article className='p-5 grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-10'>
@@ -13,19 +13,19 @@ export const Cards = () => {
             src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
             alt=''
           />
-          <div className='p-4 sm:p-6'>
-            <div className='flex justify-between items-center mb-4'>
+          <div className='p-4 sm:p-6 bg-gray-800'>
+            <div className='flex justify-between items-center mb-4 text-white'>
               <span className='text-xs'>14 feb. 2023</span>
               <span className='px-2 py-1 font-bold rounded text-xs'>
                 Category
               </span>
             </div>
             <Link to='/'>
-              <span className='text-xl lg:text-2xl font-bold text-gray-800'>
+              <span className='text-xl lg:text-2xl font-bold text-gray-200'>
                 Lorem ipsum dolor sit amet consectetur.
               </span>
             </Link>
-            <p className='mt-5 text-sm leading-relaxed text-gray-500 line-clamp-2'>
+            <p className='mt-5 text-sm leading-relaxed text-gray-100 line-clamp-2'>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
               placeat eveniet obcaecati facilis itaque vel. Placeat, adipisci
               quibusdam commodi error tempore facere vel suscipit, sequi
