@@ -3,25 +3,16 @@ export const navLinks = [
     id: 1,
     link: 'Home',
     href: '#home',
-    path: '/',
-    active: false
+    path: '/'
   },
   {
     id: 2,
     link: 'All Posts',
-    path: '/posts',
-    active: false
+    path: '/posts'
   },
   {
     id: 3,
     link: 'Create Post',
-    path: '/write',
-    active: false
-  },
-  {
-    id: 4,
-    link: 'Contact',
-    path: '/contact',
-    active: false
+    path: '/write'
   }
 ]

@@ -7,6 +7,8 @@ import Form from './hooks/useForm'
 export const Login = () => {
   NewTitle('Blog | Login')
 
+  const URL = 'http://localhost:4000'
+
   return (
     <section>
       <div className='lg:grid lg:min-h-screen lg:grid-cols-12'>
@@ -14,7 +16,7 @@ export const Login = () => {
           <img
             src='https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80'
             alt='image'
-            className='absolute inset-0 w-full h-full object-cover'
+            className='hidden md:block inset-0 w-full h-full object-cover'
           />
         </aside>
         <main className='min-h-screen flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6'>
@@ -28,6 +30,7 @@ export const Login = () => {
               Bienvenido de Vuelta
             </h1>
             <Form
+              endpoint={`${URL}/login`}
               formInitalValues={{
                 name: '',
                 password: ''

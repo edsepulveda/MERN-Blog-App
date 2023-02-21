@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom'
 import { NewTitle } from '../../utils/ChangeTitle'
 import { FormLabel, InputLabel } from './FormLabel'
 import Form from './hooks/useForm'
+import { Button } from '../../helpers/Button'
 
 export const Register = () => {
   NewTitle('Blog | Register')
+
+  const URL = 'http://localhost:4000'
 
   return (
     <section>
@@ -14,7 +17,7 @@ export const Register = () => {
           <img
             src='https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80'
             alt='image'
-            className='absolute inset-0 w-full h-full object-cover'
+            className='hidden md:block inset-0 w-full h-full object-cover'
           />
         </aside>
         <main className='min-h-screen flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6'>
@@ -22,7 +25,7 @@ export const Register = () => {
             <Link to='/' className='block text-emerald-500'>
               <span className='sr-only'>Homepage</span>
               <img
-                className='hidden h-10 lg:h-16 md:block'
+                className='block h-10 lg:h-16'
                 src={Logo}
                 alt='SVG Blog Logo'
               />
@@ -32,6 +35,7 @@ export const Register = () => {
               Registrarse
             </h1>
             <Form
+              endpoint={`${URL}/register`}
               formInitalValues={{
                 name: '',
                 email: '',
@@ -51,12 +55,7 @@ export const Register = () => {
                 <InputLabel type='password' id='password' name='password' />
               </div>
               <div className='col-span-6 flex items-start flex-col  sm:gap-4'>
-                <button
-                  type='submit'
-                  className='inline-block shrink-0 mt-4 rounded-md border border-emerald-600 bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 focus:outline-none focus:ring active:ring-emerald-500'
-                >
-                  Registrarse
-                </button>
+                <Button type='submit'>Registrarse</Button>
               </div>
             </Form>
             <div className='flex flex-col md:mt-5 md:gap-5'>
@@ -64,7 +63,7 @@ export const Register = () => {
                 ¿Ya tienes una cuenta?
                 <Link to='/login' className='text-emerald-500 hover:underline'>
                   {' '}
-                  Registrarse
+                  Logearse
                 </Link>
               </p>
               <p className='mt-5 text-xs text-white sm:mt-0'>
@@ -75,7 +74,6 @@ export const Register = () => {
                 </Link>
               </p>
             </div>
-
           </div>
         </main>
       </div>
