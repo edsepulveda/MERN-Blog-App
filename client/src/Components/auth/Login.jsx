@@ -32,13 +32,13 @@ export const Login = () => {
             <Form
               endpoint={`${URL}/login`}
               formInitalValues={{
-                name: '',
+                username: '',
                 password: ''
               }}
             >
               <div className='col-span-6'>
-                <FormLabel htmlFor='name' label='Nombre' />
-                <InputLabel type='name' id='name' name='name' />
+                <FormLabel htmlFor='username' label='Nombre' />
+                <InputLabel type='name' id='username' name='username' />
               </div>
               <div className='col-span-6'>
                 <FormLabel htmlFor='password' label='Contraseña' />

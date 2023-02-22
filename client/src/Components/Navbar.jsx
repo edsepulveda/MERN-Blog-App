@@ -16,7 +16,7 @@ export const Navbar = () => {
     >
       <div>
         {/* This Disclosure from HeadlessUI allow us to get ride of an useState */}
-        <Disclosure as='nav' className='fixed w-full top-0 z-10 bg-gray-800'>
+        <Disclosure as='nav' className='bg-gray-800'>
           {({ open }) => {
             return (
               <div className='mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-8'>

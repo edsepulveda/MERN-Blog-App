@@ -37,14 +37,14 @@ export const Register = () => {
             <Form
               endpoint={`${URL}/register`}
               formInitalValues={{
-                name: '',
+                username: '',
                 email: '',
                 password: ''
               }}
             >
               <div className='col-span-12'>
-                <FormLabel htmlFor='name' label='Nombre' />
-                <InputLabel type='name' id='name' name='name' />
+                <FormLabel htmlFor='username' label='Nombre' />
+                <InputLabel type='name' id='username' name='username' />
               </div>
               <div className='col-span-12'>
                 <FormLabel htmlFor='email' label='Correo' />
