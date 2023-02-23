@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-newline */
 /* eslint-disable multiline-ternary */
 import { Disclosure } from '@headlessui/react'
 import { navLinks } from '../constant/data'
@@ -9,6 +10,8 @@ import { LoginContext } from './auth/context/LoginContext'
 
 export const MobileNavbar = () => {
   const { user, dispatch } = useContext(LoginContext)
+
+  const PROFILE_PICTURE = 'https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1085&q=80'
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
@@ -31,7 +34,8 @@ export const MobileNavbar = () => {
                   isActive
                     ? 'bg-gray-800 rounded-md text-emerald-500'
                     : 'text-white'
-                }`}
+                }`
+              }
             >
               {item.link}
             </NavLink>
@@ -56,9 +60,18 @@ export const MobileNavbar = () => {
               </Link>
             </>
           ) : (
-            <Link onClick={handleLogout} className='rounded-md inline-flex justify-center bg-white py-2.5 px-3'>
-              Log Out
-            </Link>
+            <>
+              <div className='flex flex-row gap-3 justify-between items-center'>
+                <img src={PROFILE_PICTURE} className='w-10 h-10 rounded-full self-start' alt='Profile picture' />
+                <p className='text-center text-emerald-500 uppercase'>Welcome, {user?.username}</p>
+              </div>
+              <Link
+                onClick={handleLogout}
+                className='rounded-md inline-flex justify-center bg-white py-2.5 px-3 mt-5'
+              >
+                Log Out
+              </Link>
+            </>
           )}
         </div>
       </div>
