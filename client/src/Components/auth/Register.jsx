@@ -8,8 +8,6 @@ import { Button } from '../../helpers/Button'
 export const Register = () => {
   NewTitle('Blog | Register')
 
-  const URL = 'http://localhost:4000'
-
   return (
     <section>
       <div className='lg:grid lg:min-h-screen lg:grid-cols-12'>
@@ -35,7 +33,7 @@ export const Register = () => {
               Registrarse
             </h1>
             <Form
-              endpoint={`${URL}/register`}
+              formtype='register'
               formInitalValues={{
                 username: '',
                 email: '',

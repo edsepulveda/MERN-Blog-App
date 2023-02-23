@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import { FormLabel, InputLabel } from './FormLabel'
 import { NewTitle } from '../../utils/ChangeTitle'
 import Form from './hooks/useForm'
+import { useContext } from 'react'
+import { LoginContext } from './context/LoginContext'
 
 export const Login = () => {
   NewTitle('Blog | Login')
 
-  const URL = 'http://localhost:4000'
-
+  const { isFetching, error } = useContext(LoginContext)
+  console.log(isFetching)
   return (
     <section>
       <div className='lg:grid lg:min-h-screen lg:grid-cols-12'>
@@ -30,7 +32,7 @@ export const Login = () => {
               Bienvenido de Vuelta
             </h1>
             <Form
-              endpoint={`${URL}/login`}
+              formtype='login'
               formInitalValues={{
                 username: '',
                 password: ''
@@ -43,11 +45,13 @@ export const Login = () => {
               <div className='col-span-6'>
                 <FormLabel htmlFor='password' label='Contraseña' />
                 <InputLabel type='password' id='password' name='password' />
+                {error && <p className='text-red-700'>Hubo problemas con la autenticación</p>}
               </div>
               <div className='col-span-6 flex items-start flex-col  sm:gap-4'>
                 <button
                   type='submit'
-                  className='inline-block shrink-0 mt-4 rounded-md border border-emerald-600 bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 focus:outline-none focus:ring active:ring-emerald-500'
+                  disabled={isFetching}
+                  className='inline-block shrink-0 mt-4 rounded-md border border-emerald-600 bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 focus:outline-none focus:ring active:ring-emerald-500 disabled:bg-gray-500 disabled:text-white disabled:cursor-not-allowed'
                 >
                   Ingresar
                 </button>

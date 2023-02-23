@@ -1,13 +1,14 @@
 import axios from 'axios'
-import { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
 import { FormContext } from '../context/FormContext'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { LoginContext } from '../context/LoginContext'
 
-function Form ({ children, formInitalValues, endpoint }) {
+function Form ({ children, formInitalValues, formtype }) {
   const [form, setForm] = useState(formInitalValues)
-  // const navigate = useNavigate()
+  const { dispatch, user } = useContext(LoginContext)
+
+  const REGISTER_FORM_ENDPOINT = 'http://localhost:4000/register'
+  const LOGIN_FORM_ENDPOINT = 'http://localhost:4000/login'
 
   const handleFormChange = (e) => {
     const { name, value } = e.target
@@ -17,20 +18,17 @@ function Form ({ children, formInitalValues, endpoint }) {
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const endpoint =
+      formtype === 'register' ? REGISTER_FORM_ENDPOINT : LOGIN_FORM_ENDPOINT
     try {
+      dispatch({ type: 'LOGIN_START' })
       const resp = await axios.post(endpoint, form)
       setForm(formInitalValues)
-      // if (resp.status === 200) {
-      //   if (window.location.pathname === '/register') {
-      //     navigate('/login')
-      //   } else if (window.location.pathname === '/login') {
-      //     navigate('/')
-      //   }
-      // }
-      toast.success(resp.data)
+      dispatch({ type: 'LOGIN_SUCCESS', payload: resp.data })
+      console.log(user)
     } catch (err) {
+      dispatch({ type: 'LOGIN_ERROR' })
       console.error(err)
-      toast.error(err)
     }
   }
   return (
@@ -44,7 +42,6 @@ function Form ({ children, formInitalValues, endpoint }) {
           {children}
         </FormContext.Provider>
       </form>
-      <ToastContainer />
     </>
   )
 }
