@@ -5,7 +5,7 @@ import { InnerNavbar } from './InnerNavbar'
 import { HiOutlineMenuAlt4 } from 'react-icons/hi'
 import { HiXMark } from 'react-icons/hi2'
 import { MobileNavbar } from './MobileNavbar'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
   return (
@@ -16,18 +16,21 @@ export const Navbar = () => {
     >
       <div>
         {/* This Disclosure from HeadlessUI allow us to get ride of an useState */}
-        <Disclosure as='nav' className='bg-gray-800'>
+        <Disclosure as='nav' className='backdrop-blur-md'>
           {({ open }) => {
             return (
               <div className='mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-8'>
                 <div className='flex h-20 justify-between items-center'>
                   <div className='flex items-center'>
                     <div className='flex-shrink'>
-                      <img
-                        className='h-8 w-8 text-emerald-500'
-                        src={Logo}
-                        alt='SVG Blog Logo'
-                      />
+                      <Link to='/'>
+                        <img
+                          className='h-8 w-8 text-emerald-500'
+                          src={Logo}
+                          alt='SVG Blog Logo'
+                        />
+                      </Link>
+
                     </div>
 
                     <div className='hidden md:block'>
@@ -40,7 +43,7 @@ export const Navbar = () => {
                             ${
                               isActive
                                 ? 'bg-gray-800 rounded-md text-emerald-500'
-                                : 'text-white'
+                                : 'text-white hover:text-gray-300'
                             }`}
                             key={item.id}
                             to={item.path}

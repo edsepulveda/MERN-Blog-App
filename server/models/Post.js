@@ -3,10 +3,9 @@ const mongoose = require('mongoose')
 const PostSchema = mongoose.Schema({
   title:{
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
-  desc:{
+  description:{
     type: String,
     required: true,
   },
@@ -14,14 +13,15 @@ const PostSchema = mongoose.Schema({
     type: String,
     default: ""
   },
-  username: {
+  user: {
     type: String,
     required: true
   },
-  categories: {
-    type: Array,
-    required: false
+  category: {
+    type: String,
+    required: true
   }
+  
 }, {timestamps: true})
 
 

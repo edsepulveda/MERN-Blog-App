@@ -16,3 +16,18 @@ export const navLinks = [
     path: '/write'
   }
 ]
+
+export const Categories = [
+  {
+    id: 1,
+    name: 'Programming'
+  },
+  {
+    id: 2,
+    name: 'Life Hacks'
+  },
+  {
+    id: 3,
+    name: 'Daily Life'
+  }
+]

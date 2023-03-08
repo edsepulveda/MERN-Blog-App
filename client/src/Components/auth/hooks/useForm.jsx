@@ -35,7 +35,7 @@ function Form ({ children, formInitalValues, formtype }) {
     <>
       <form
         onSubmit={handleSubmit}
-        className='mt-8 grid grid-cols-6 gap-6'
+        className='mt-8 grid gap-6'
         autoComplete='off'
       >
         <FormContext.Provider value={{ form, handleFormChange }}>
