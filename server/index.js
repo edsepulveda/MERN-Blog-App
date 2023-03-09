@@ -10,10 +10,10 @@ const mongoose = require('mongoose')
 const PORT = process.env.EXPRESS_DEV_PORT || 5000
 
 app.use('/uploads', express.static(__dirname + '/uploads'))
-app.use(express.json())
+app.use(express.json({ limit: '50mb' }))
 app.use(cors())
 app.use(helmet())
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 mongoose.set('strictQuery', false)
 

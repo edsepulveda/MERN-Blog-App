@@ -1,5 +1,7 @@
 import { AiOutlineArrowUp } from 'react-icons/ai'
 import Logo from '../assets/img/logo.svg'
+import { navLinks } from '../constant/data'
+import { Link } from 'react-router-dom'
 
 export const Footer = () => {
   const scrollTop = () => {
@@ -29,6 +31,13 @@ export const Footer = () => {
             </p>
           </div>
         </div>
+        <ul className='flex gap-10 mt-10 flex-col lg:flex-row justify-center items-center text-emerald-500'>
+          {navLinks.map((item) => (
+            <li key={item.id} onClick={scrollTop} className='hover:text-emerald-700 hover:underline'>
+              <Link to={item.path}>{item.link}</Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </footer>
   )
