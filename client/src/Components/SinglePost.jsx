@@ -1,13 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { formatISO9075 } from 'date-fns'
-import { Options } from '../helpers/Options'
+import { LoginContext } from './auth/context/LoginContext'
+import { MdOutlineDeleteForever, MdUpdate } from 'react-icons/md'
+import { useModal } from '../helpers/useModal'
+import { Modal } from '../helpers/Modal'
 
 export const SinglePost = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
+  const { user } = useContext(LoginContext)
   const DEV_URL = `http://localhost:4000/post/${id}`
   const [singlePost, setSinglePost] = useState(null)
+  const { modal, handleCancel, handleShow } = useModal()
 
   useEffect(() => {
     const getPosts = async () => {
@@ -18,8 +24,25 @@ export const SinglePost = () => {
     getPosts()
   }, [])
 
+  const handleDelete = async () => {
+    try {
+      const resp = await axios.delete(DEV_URL)
+      console.log(resp.data)
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className='mx-auto max-w-screen-xl mt-10'>
+      {modal && (
+        <Modal
+          isOpen={modal}
+          onConfirm={handleDelete}
+          onCancel={handleCancel}
+        />
+      )}
       <div className='flex flex-col justify-center items-center'>
         {singlePost && (
           <>
@@ -47,7 +70,28 @@ export const SinglePost = () => {
                         {singlePost.data.user}
                       </span>
                     </p>
-                    <Options />
+                    {singlePost.data.user === user?.username && (
+                      <span className='inline-flex divide-x overflow-hidden rounded-md border w-fit'>
+                        <button
+                          className='text-xs font-semibold inline-flex gap-2 p-2 bg-emerald-600 text-white'
+                          title='Update Post'
+                        >
+                          Edit{' '}
+                          <MdUpdate className='self-center' color='white' />
+                        </button>
+                        <button
+                          onClick={handleShow}
+                          className='text-xs font-semibold inline-flex p-2 gap-2 bg-red-600 text-white'
+                          title='Update Post'
+                        >
+                          Delete{' '}
+                          <MdOutlineDeleteForever
+                            className='self-center'
+                            color='white'
+                          />
+                        </button>
+                      </span>
+                    )}
                   </div>
                   <p className='text-white text-xs font-semibold mt-5 lg:mt-4'>
                     {formatISO9075(new Date(singlePost.data.createdAt))}

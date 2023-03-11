@@ -12,7 +12,6 @@ export const InnerNavbar = () => {
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
-    console.log(user)
   }
 
   return (

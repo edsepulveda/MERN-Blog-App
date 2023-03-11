@@ -13,7 +13,7 @@ export const navLinks = [
   {
     id: 3,
     link: 'Create Post',
-    path: '/write'
+    path: '/CreatePost'
   }
 ]
 

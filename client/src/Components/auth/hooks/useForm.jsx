@@ -5,7 +5,7 @@ import { LoginContext } from '../context/LoginContext'
 
 function Form ({ children, formInitalValues, formtype }) {
   const [form, setForm] = useState(formInitalValues)
-  const { dispatch, user } = useContext(LoginContext)
+  const { dispatch } = useContext(LoginContext)
 
   const REGISTER_FORM_ENDPOINT = 'http://localhost:4000/register'
   const LOGIN_FORM_ENDPOINT = 'http://localhost:4000/login'
@@ -25,7 +25,6 @@ function Form ({ children, formInitalValues, formtype }) {
       const resp = await axios.post(endpoint, form)
       setForm(formInitalValues)
       dispatch({ type: 'LOGIN_SUCCESS', payload: resp.data })
-      console.log(user)
     } catch (err) {
       dispatch({ type: 'LOGIN_ERROR' })
       console.error(err)
