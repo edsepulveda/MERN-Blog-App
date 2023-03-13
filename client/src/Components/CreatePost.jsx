@@ -17,7 +17,7 @@ export const CreatePost = () => {
   NewTitle('Blog | New Post')
   const navigate = useNavigate()
 
-  const postURL = 'http://localhost:4000/post'
+  const postURL = 'https://mern-blog-app-express.onrender.com/post'
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')

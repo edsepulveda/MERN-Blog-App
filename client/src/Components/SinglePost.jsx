@@ -17,7 +17,7 @@ export const SinglePost = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const { user } = useContext(LoginContext)
-  const DEV_URL = `http://localhost:4000/post/${id}`
+  const DEV_URL = `https://mern-blog-app-express.onrender.com/post/${id}`
   const [singlePost, setSinglePost] = useState(null)
   const [editMode, setEditMode] = useState(false)
   const [title, setTitle] = useState('')
@@ -45,7 +45,7 @@ export const SinglePost = () => {
 
   const handleEdit = async () => {
     try {
-      const resp = await axios.put(`http://localhost:4000/post/${id}`, {
+      const resp = await axios.put(`https://mern-blog-app-express.onrender.com/post/${id}`, {
         user: user.username,
         title,
         description

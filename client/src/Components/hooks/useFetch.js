@@ -26,7 +26,7 @@ export const getData = (url) => {
   const handleSearch = async (e) => {
     const key = e.target.value
     if (key) {
-      const getSearch = await axios.get(`http://localhost:4000/search/${key}`)
+      const getSearch = await axios.get(`https://mern-blog-app-express.onrender.com/search/${key}`)
       const data = getSearch.data
       if (data) {
         setPosts(data)

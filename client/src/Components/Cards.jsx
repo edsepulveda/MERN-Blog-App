@@ -5,7 +5,7 @@ import { getData } from './hooks/useFetch'
 import { Link } from 'react-router-dom'
 
 export const Cards = () => {
-  const DEV_URL = 'http://localhost:4000/posts'
+  const DEV_URL = 'https://mern-blog-app-express.onrender.com/posts'
 
   const { posts, loading } = getData(DEV_URL)
 

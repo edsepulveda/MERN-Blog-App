@@ -8,7 +8,7 @@ import { Loading } from '../helpers/Loading'
 export const Posts = () => {
   NewTitle('Blog | All Posts')
 
-  const DEV_URL = 'http://localhost:4000/all-posts'
+  const DEV_URL = 'https://mern-blog-app-express.onrender.com/all-posts'
   const { posts, loading, handleSearch } = getData(DEV_URL)
 
   return (

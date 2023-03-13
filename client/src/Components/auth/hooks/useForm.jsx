@@ -7,8 +7,8 @@ function Form ({ children, formInitalValues, formtype }) {
   const [form, setForm] = useState(formInitalValues)
   const { dispatch } = useContext(LoginContext)
 
-  const REGISTER_FORM_ENDPOINT = 'http://localhost:4000/register'
-  const LOGIN_FORM_ENDPOINT = 'http://localhost:4000/login'
+  const REGISTER_FORM_ENDPOINT = 'https://mern-blog-app-express.onrender.com/register'
+  const LOGIN_FORM_ENDPOINT = 'https://mern-blog-app-express.onrender.com/login'
 
   const handleFormChange = (e) => {
     const { name, value } = e.target
