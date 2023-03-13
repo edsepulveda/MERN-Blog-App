@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { LoginContext } from './auth/context/LoginContext'
 import { modules } from '../helpers/toolbar'
 import toast, { Toaster } from 'react-hot-toast'
+import { Button } from '../helpers/Button'
 
 export const CreatePost = () => {
   NewTitle('Blog | New Post')
@@ -83,7 +84,9 @@ export const CreatePost = () => {
         >
           <div className='grid gap-6 sm:grid-cols-2 sm:gap-6'>
             <div className='w-full col-span-6 sm:col-span-3'>
-              <Label htmlFor='title'>Title <span className='text-red-600'>*</span></Label>
+              <Label htmlFor='title'>
+                Title <span className='text-red-600'>*</span>
+              </Label>
               <input
                 placeholder='Title...'
                 className='form-input bg-gray-50 border border-gray-300 placeholder:text-black rounded-md focus:ring-1 focus:ring-emerald-500 focus:border-emerald-600 block w-full p-2.5'
@@ -95,7 +98,9 @@ export const CreatePost = () => {
               />
             </div>
             <div className='w-full col-span-6 sm:col-span-3'>
-              <Label htmlFor='file'>Photo <span className='text-red-600'>*</span></Label>
+              <Label htmlFor='file'>
+                Photo <span className='text-red-600'>*</span>
+              </Label>
               <input
                 className='form-input bg-transparent text-white file:rounded-full text-sm file:bg-emerald-500 file:text-white file:text-sm file:p-2.5 file:mr-5 file:border-none border border-none hover:file:bg-emerald-700 hover:file:cursor-pointer focus:ring-1 focus:ring-emerald-500 focus:border-emerald-600 block w-full p-2.5 file:transition file:duration-200'
                 type='file'
@@ -126,7 +131,9 @@ export const CreatePost = () => {
             </div>
 
             <div className='w-full col-span-6 sm:col-span-3'>
-              <Label htmlFor='desc'>Description <span className='text-red-600'>*</span></Label>
+              <Label htmlFor='desc'>
+                Description <span className='text-red-600'>*</span>
+              </Label>
               <ReactQuill
                 id='desc'
                 name='desc'
@@ -145,14 +152,7 @@ export const CreatePost = () => {
             >
               {loading ? 'Creating Post...' : 'Create Post'}
             </button>
-            {preview && (
-              <button
-                onClick={handleCancel}
-                className='inline-flex py-2.5 px-4 mt-4 sm:mt-10 font-medium text-center text-white bg-emerald-500 rounded-lg hover:bg-emerald-700 transition-all duration-200'
-              >
-                Clear Preview
-              </button>
-            )}
+            {preview && <Button onClick={handleCancel}>Clear Preview</Button>}
           </div>
           <Toaster position='top-left' />
         </form>

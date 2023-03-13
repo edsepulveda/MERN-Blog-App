@@ -38,8 +38,8 @@ router.get("/post/:id", async (req, res) => {
 //Only a user that created a post, can edit his posts. so he need to validated through the 'req.body.username'
 router.put("/post/:id", async (req, res) => {
   try {
-    const getUsername = await Post.findById(req.params.id);
-    if (getUsername.username === req.body.username) {
+    const post = await Post.findById(req.params.id);
+    if (post.username === req.body.username) {
       try {
         const updatePost = await Post.findByIdAndUpdate(
           req.params.id,

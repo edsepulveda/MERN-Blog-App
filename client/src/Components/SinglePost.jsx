@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable multiline-ternary */
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -6,6 +8,10 @@ import { LoginContext } from './auth/context/LoginContext'
 import { MdOutlineDeleteForever, MdUpdate } from 'react-icons/md'
 import { useModal } from '../helpers/useModal'
 import { Modal } from '../helpers/Modal'
+import ReactQuill from 'react-quill'
+import { modules } from '../helpers/toolbar'
+import { EditableTitle } from '../helpers/EditableTitle'
+import { Button } from '../helpers/Button'
 
 export const SinglePost = () => {
   const { id } = useParams()
@@ -13,6 +19,9 @@ export const SinglePost = () => {
   const { user } = useContext(LoginContext)
   const DEV_URL = `http://localhost:4000/post/${id}`
   const [singlePost, setSinglePost] = useState(null)
+  const [editMode, setEditMode] = useState(false)
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
   const { modal, handleCancel, handleShow } = useModal()
 
   useEffect(() => {
@@ -31,6 +40,20 @@ export const SinglePost = () => {
       navigate('/')
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  const handleEdit = async () => {
+    try {
+      const resp = await axios.put(`http://localhost:4000/post/${id}`, {
+        user: user.username,
+        title,
+        description
+      })
+      resp.status === 200 ? navigate(0) : null
+      setEditMode(false)
+    } catch (error) {
+      alert(`Something is wrong with the Update ${error}`)
     }
   }
 
@@ -60,9 +83,20 @@ export const SinglePost = () => {
                   <p className='mb-3 lg:mb-5  bg-emerald-900 text-emerald-300 text-xs font-medium px-2.5 py-0.5 rounded-full w-fit'>
                     {singlePost.data.category}
                   </p>
-                  <h2 className='capitalize text-3xl font-bold leading-relaxed md:text-4xl text-white'>
-                    {singlePost.data.title}
-                  </h2>
+                  <div>
+                    {editMode ? (
+                      <EditableTitle
+                        placeholder='New Title..'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                    ) : (
+                      <h2 className='capitalize text-3xl font-bold leading-relaxed md:text-4xl text-white'>
+                        {singlePost.data.title}
+                      </h2>
+                    )}
+                  </div>
+
                   <div className='flex flex-col lg:flex-row mt-2 md:mt-4 gap-5'>
                     <p className='text-white md:self-center'>
                       Created by:{' '}
@@ -73,8 +107,8 @@ export const SinglePost = () => {
                     {singlePost.data.user === user?.username && (
                       <span className='inline-flex divide-x overflow-hidden rounded-md border w-fit'>
                         <button
+                          onClick={() => setEditMode(!editMode)}
                           className='text-xs font-semibold inline-flex gap-2 p-2 bg-emerald-600 text-white'
-                          title='Update Post'
                         >
                           Edit{' '}
                           <MdUpdate className='self-center' color='white' />
@@ -82,7 +116,6 @@ export const SinglePost = () => {
                         <button
                           onClick={handleShow}
                           className='text-xs font-semibold inline-flex p-2 gap-2 bg-red-600 text-white'
-                          title='Update Post'
                         >
                           Delete{' '}
                           <MdOutlineDeleteForever
@@ -96,12 +129,27 @@ export const SinglePost = () => {
                   <p className='text-white text-xs font-semibold mt-5 lg:mt-4'>
                     {formatISO9075(new Date(singlePost.data.createdAt))}
                   </p>
-                  <div
-                    className='text-white mt-20'
-                    dangerouslySetInnerHTML={{
-                      __html: singlePost.data.description
-                    }}
-                  />
+                  {editMode ? (
+                    <>
+                      <ReactQuill
+                        id='desc'
+                        name='desc'
+                        theme='snow'
+                        modules={modules}
+                        className='w-full block mb-2 mt-4 text-sm text-gray-900 bg-gray-50'
+                        value={description}
+                        onChange={(value) => setDescription(value)}
+                      />
+                      <Button onClick={handleEdit}>Edit Post</Button>
+                    </>
+                  ) : (
+                    <div
+                      className='text-white mt-20'
+                      dangerouslySetInnerHTML={{
+                        __html: singlePost.data.description
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             </section>
